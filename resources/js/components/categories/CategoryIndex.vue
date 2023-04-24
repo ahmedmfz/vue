@@ -1,6 +1,6 @@
 <template>
 
-    <h2 class="text-center my-4 border border-dark">All Categories</h2>
+  
     <div class="row my-3">
         <h2>search</h2>
         <div class="col-3">

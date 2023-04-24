@@ -1,6 +1,5 @@
 <template>
 
-    <h2 class="text-center my-4 border border-dark">All Posts</h2>
     <div class="row my-3">
         <h2>search</h2>
         <div class="col-3">
@@ -11,6 +10,9 @@
                 <option value=""> select categories</option>
                 <option v-for="category in categories"  :value="category.id" >{{ category.name }}}</option>
             </select>
+        </div>
+        <div class="col-6 text-end">
+             <router-link :to="{ name : 'posts.create'}" class="btn btn-primary"> Add Post</router-link>
         </div>
     </div>
     <div class="row">
@@ -36,8 +38,8 @@
                         <td> <img :src="post.image" :alt="post.title + 'image'" style="width: 50px;"> </td>
                         <td>{{ post.created_at }}</td>
                         <td>
-                            <button class="btn btn-warning btn-sm mx-2" :id="post.id" >Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <router-link :to="{ name : 'posts.edit' , params : {id: post.id}  }" class="btn btn-warning btn-sm" > Edit</router-link>
+                            <a @click.prevent="deletePost(post.id)" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 </tbody>
@@ -64,7 +66,7 @@
         setup() {
             const selectedCategory  = ref('');
             const title  = ref('');
-            const {posts , getPosts} = usePosts();
+            const {posts , getPosts , deletePost} = usePosts();
             const {categories , getCategories} = useCategories();
             onMounted(()=>{
                 getPosts(),
@@ -77,7 +79,7 @@
                 getPosts(1, title.value ,  current);
             })    
                
-            return {posts , getPosts , categories , selectedCategory , title}
+            return {posts , getPosts , categories , deletePost,selectedCategory , title}
         }
     }
 

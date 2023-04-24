@@ -6,34 +6,20 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
-import PostIndexComponent from './components/posts/PostIndex.vue';
-import CategoryIndexComponent from './components/categories/CategoryIndex.vue';
-import HomeComponent from './components/Index.vue';
 import App from './components/layouts/App.vue';
 import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import router from './routes/routes.js'
+
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
-const routes = [{
-    path: '/',
-    component: HomeComponent
-}, {
-    path: '/posts',
-    component: PostIndexComponent
-}, {
-    path: '/categories',
-    component: CategoryIndexComponent
-}];
-
-const router = createRouter({
-    history: createWebHistory(),
-    routes
-});
 
 const app = createApp(App);
 app.use(router);
+app.use(VueSweetalert2);
 app.component('pagination', Bootstrap5Pagination);
 app.mount('#app');

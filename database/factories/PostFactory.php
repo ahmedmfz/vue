@@ -21,7 +21,6 @@ class PostFactory extends Factory
             'title'       => $this->faker->text('20'),
             'content'     => $this->faker->text('40'),
             'category_id' => rand(1,Category::count()),
-            'image'       => 'https://recurpost.com/wp-content/uploads/2021/02/Google-My-Business-Post-Image-Size-in-2021.jpg',
         ];
     }
 }
